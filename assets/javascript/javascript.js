@@ -2,6 +2,7 @@ const apiKey = "t9Js0eys1AyskcYxqnMTzaI3ksBDn9hy";
 const imageCount = 10;
 const buttons = ["Leslie Knope"];
 
+// When the user clicks submit on the add buttons form...
 $("#submit").on("click", function (e) {
     //Prevents page from refreshing
     e.preventDefault();
@@ -12,31 +13,43 @@ $("#submit").on("click", function (e) {
 
     buttons.push(userInput);
     renderButtons();
-
-    // $.ajax({
-    //     url: `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${userInput}&limit=${imageCount}`,
-    //     method: "GET"
-    // }).then(function (data) {
-    //     const gifIndex = data.data;
-    //     console.log(gifIndex);
-
-    // });
-
-    console.log($("#input").val());
 });
 
-function renderButtons () {
+// When the user clicks on a button to summon gifs
+$("#buttonsDiv").on("click", ".summonGifBtn", function () {
+    const searchTerm = $(this).attr("data-name");
+
+    // Search Gihpy API for the search term and generate gifs
+    $.ajax({
+        url: `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchTerm}&limit=${imageCount}`,
+        method: "GET"
+    }).then(function (data) {
+        generateGifs();
+        console.log(data);
+    });
+});
+
+// Render the buttons by removing old buttons first, then looping for each
+function renderButtons() {
     //Empty the buttons div before rending new buttons
     $("#buttonsDiv").empty();
 
     //Render a button for each item in the array
-    buttons.forEach(function(item, i) {
+    buttons.forEach(function (item, i) {
         const btn = $("<button>");
         btn.addClass("summonGifBtn");
+        btn.attr("data-name", item);
         btn.text(item)
 
         $("#buttonsDiv").append(btn);
     });
 }
 
-renderButtons();
+// Generate the gifs divs
+function generateGifs() {
+    console.log("Generating gifs...");
+}
+
+$(document).ready(function () {
+    renderButtons();
+});
