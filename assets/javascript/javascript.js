@@ -29,6 +29,13 @@ $("#buttonsDiv").on("click", ".summonGifBtn", function () {
     });
 });
 
+//When the user clicks on the #gifs container, filter for class .gifListener and run function
+$("#gifs").on("click", ".gifListener", function() {
+    console.log("Clicked on image " + $(this).attr("data-animated-url"));
+    // $(this).attr("src", $(this).attr("data-animated-url"));
+    $(this).attr("data-state") == "still" ? $(this).attr("src", $(this).attr("data-animated-url")) && $(this).attr("data-state", "play") : $(this).attr("src", $(this).attr("data-still-url")) && $(this).attr("data-state", "still");
+});
+
 // Render the buttons by removing old buttons first, then looping for each
 function renderButtons() {
     //Empty the buttons div before rending new buttons
@@ -65,7 +72,7 @@ function generateGifs(array) {
         rating.text(`Rated ${gifRating}`);
 
         const img = $("<img>");
-        img.addClass("img-fluid");
+        img.addClass("gifListener img-fluid");
         img.attr("src", stillUrl);
         img.attr("data-still-url", stillUrl);
         img.attr("data-animated-url", animatedURL);
