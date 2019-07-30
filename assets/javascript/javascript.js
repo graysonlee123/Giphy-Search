@@ -63,7 +63,10 @@ function generateGifs(array) {
         const animatedURL = item.images.fixed_height.url;
 
         const gifContainer = $("<div>");
-        gifContainer.addClass("col-4 p-3");
+        gifContainer.addClass("panel col-12 col-md-6 col-lg-4 p-2");
+
+        const gifCard = $("<div>");
+        gifCard.addClass("m-2 rounded bg-light shadow")
 
         const title = $("<h3>");
         title.text(gifTitle);
@@ -72,14 +75,15 @@ function generateGifs(array) {
         rating.text(`Rated ${gifRating}`);
 
         const img = $("<img>");
-        img.addClass("gifListener img-fluid");
+        img.addClass("gifListener img-fluid w-100 rounded-bottom");
         img.attr("src", stillUrl);
         img.attr("data-still-url", stillUrl);
         img.attr("data-animated-url", animatedURL);
         img.attr("data-state", "still");
 
-        gifContainer.append(title, rating, img);
-        $("#gifs").append(gifContainer);
+        gifCard.append(title, rating, img);
+        gifContainer.append(gifCard);
+        $("#gifs").prepend(gifContainer);
     })
 }
 
