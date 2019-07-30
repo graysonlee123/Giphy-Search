@@ -24,8 +24,8 @@ $("#buttonsDiv").on("click", ".summonGifBtn", function () {
         url: `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchTerm}&limit=${imageCount}`,
         method: "GET"
     }).then(function (data) {
-        generateGifs();
-        console.log(data);
+        const gifsArray = data.data;
+        generateGifs(gifsArray);
     });
 });
 
@@ -46,10 +46,37 @@ function renderButtons() {
 }
 
 // Generate the gifs divs
-function generateGifs() {
+function generateGifs(array) {
     console.log("Generating gifs...");
+    array.forEach(function(item) {
+        console.log(item);
+        const gifTitle = item.title;
+        const gifRating = item.rating;
+        const stillUrl = item.images.fixed_height_still.url;
+        const animatedURL = item.images.fixed_height.url;
+
+        const gifContainer = $("<div>");
+        gifContainer.addClass("col-4 p-3");
+
+        const title = $("<h3>");
+        title.text(gifTitle);
+
+        const rating = $("<p>");
+        rating.text(`Rated ${gifRating}`);
+
+        const img = $("<img>");
+        img.addClass("img-fluid");
+        img.attr("src", stillUrl);
+        img.attr("data-still-url", stillUrl);
+        img.attr("data-animated-url", animatedURL);
+        img.attr("data-state", "still");
+
+        gifContainer.append(title, rating, img);
+        $("#gifs").append(gifContainer);
+    })
 }
 
+// Run once when the document is ready
 $(document).ready(function () {
     renderButtons();
 });
