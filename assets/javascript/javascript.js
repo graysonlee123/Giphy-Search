@@ -101,9 +101,6 @@ function generateGifs(array) {
         $grid.imagesLoaded().progress( function () {
             $grid.masonry('layout');
         });
-
-        
-        
     })
 }
 
@@ -119,8 +116,8 @@ $(document).ready(function () {
     renderButtons();
 });
 
+//Enable masonry
 var $grid = $('.grid').masonry({
-    columnWidth: 420,
+    columnWidth: '.grid-item',
     itemSelector: '.grid-item',
-    gutter: 20
 });
