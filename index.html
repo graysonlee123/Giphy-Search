@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Giphy API</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Passion+One:400,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/style/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,7 +22,7 @@
             </div>
             <div>
                 <form class="form-inline">
-                    <input type="text" id="input" class="form-control mr-sm-2" placeholder="Enter character here">
+                    <input type="text" id="input" class="form-control mr-sm-2" placeholder="Enter gif desire here">
                     <input type="submit" id="submit" class="btn btn-outline-success my-2 my-sm-1">
                 </form>
             </div>
@@ -28,11 +30,17 @@
     </nav>
     <div class="container row mx-auto text-center">
         <div id="buttonsDiv" class="col-12 my-3"></div>
+    </div>
 
-        <div id="gifs" class="row"></div>
+    <div id="gridContainer" class="mx-auto">
+        <div class="grid" id="gifs">
+        
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="./assets/javascript/masonry.pkgd.js"></script>
     <script src="./assets/javascript/javascript.js"></script>
 </body>
 

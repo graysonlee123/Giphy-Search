@@ -1,3 +1,86 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
+    font-family: 'Passion One', cursive;
+    background: #333;
+    color: #333;
+}
+
+h3 {
+    font-size: 1.6em;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 12px 14px 2px;
+    margin-bottom: 1px;
+    letter-spacing: 1px;
+}
+
+p {
+    padding: 0px 14px 12px;
+    margin-bottom: 1px;
+    letter-spacing: 1px;
+    color: #555;
+    font-weight: 400;
+}
+
+.grid-item {
+    width: 400px;
+    height: auto;
+    float: left;
     background: #eee;
+    border: 2px solid #333;
+    border-color: #eee;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+/* 3 gifs */
+#gridContainer {
+    width: 1260px;
+}
+
+@media screen and (max-width: 1200px) {
+    /* 3 gifs */
+    #gridContainer {
+        width: 960px;
+    }
+    .grid-item {
+        width: 31.33%;
+        margin: 1%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    /* 3 gifs */
+    #gridContainer {
+        width: 740px;
+    }
+    .grid-item {
+        width: 31.33%;
+        margin: 1%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* 2 gifs */
+    #gridContainer {
+        width: 540px;
+    }
+    .grid-item {
+        width: 48%;
+        margin: 1%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    /* 1 gifs */
+    #gridContainer {
+        width: 94%;
+    }
+    .grid-item {
+        width: 98%;
+        margin: 1%;
+    }
 }
