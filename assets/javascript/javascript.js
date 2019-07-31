@@ -30,7 +30,7 @@ $("#buttonsDiv").on("click", ".summonGifBtn", function () {
 });
 
 //When the user clicks on the #gifs container, filter for class .gifListener and run function
-$("#gifs").on("click", ".gifListener", function() {
+$("#gifs").on("click", ".gifListener", function () {
     console.log("Clicked on image " + $(this).attr("data-animated-url"));
     // $(this).attr("src", $(this).attr("data-animated-url"));
     $(this).attr("data-state") == "still" ? $(this).attr("src", $(this).attr("data-animated-url")) && $(this).attr("data-state", "play") : $(this).attr("src", $(this).attr("data-still-url")) && $(this).attr("data-state", "still");
@@ -55,40 +55,72 @@ function renderButtons() {
 // Generate the gifs divs
 function generateGifs(array) {
     console.log("Generating gifs...");
-    array.forEach(function(item) {
+    array.forEach(function (item) {
         console.log(item);
+        // const gifTitle = item.title;
+        // const gifRating = item.rating;
+        // const stillUrl = item.images.fixed_height_still.url;
+        // const animatedURL = item.images.fixed_height.url;
+
+        // const gifContainer = $("<div>");
+        // gifContainer.addClass("col-12 col-md-6 col-lg-4 p-2");
+
+        // const gifCard = $("<div>");
+        // gifCard.addClass("m-2 rounded bg-light shadow")
+
+        // const title = $("<h3>");
+        // title.text(gifTitle);
+        // title.addClass("px-4 pt-4 pb-1")
+
+        // const rating = $("<p>");
+        // rating.text(`Rated ${gifRating}`);
+
+        // const img = $("<img>");
+        // img.addClass("gifListener img-fluid w-100 rounded-bottom");
+        // img.attr("src", stillUrl);
+        // img.attr("data-still-url", stillUrl);
+        // img.attr("data-animated-url", animatedURL);
+        // img.attr("data-state", "still");
+
+        // gifContainer.append(title, rating, img);
+        // let gifElem = $ (gifContainer);
+        // // $("#gifs").prepend(gifContainer);
+
         const gifTitle = item.title;
         const gifRating = item.rating;
-        const stillUrl = item.images.fixed_height_still.url;
-        const animatedURL = item.images.fixed_height.url;
+        const gifAnimationUrl = item.images.fixed_height.url;
 
-        const gifContainer = $("<div>");
-        gifContainer.addClass("col-12 col-md-6 col-lg-4 p-2");
+        const divTest = $(`<div class=\"grid-item\">
+            <h3>${gifTitle}</h3>
+            <p>${gifRating}</p>
+            <img src=\"${gifAnimationUrl}\" class=\"w-100\"> 
+        </div>`);
 
-        const gifCard = $("<div>");
-        gifCard.addClass("m-2 rounded bg-light shadow")
+        $grid.prepend(divTest).masonry('prepended', divTest);
 
-        const title = $("<h3>");
-        title.text(gifTitle);
-        title.addClass("px-4 pt-4 pb-1")
+        $grid.imagesLoaded().progress( function () {
+            $grid.masonry('layout');
+        });
 
-        const rating = $("<p>");
-        rating.text(`Rated ${gifRating}`);
-
-        const img = $("<img>");
-        img.addClass("gifListener img-fluid w-100 rounded-bottom");
-        img.attr("src", stillUrl);
-        img.attr("data-still-url", stillUrl);
-        img.attr("data-animated-url", animatedURL);
-        img.attr("data-state", "still");
-
-        gifCard.append(title, rating, img);
-        gifContainer.append(gifCard);
-        $("#gifs").prepend(gifContainer);
+        
+        
     })
 }
+
+function test($elem) {
+    // let $elems = $("<div class=\"grid-item\"> test </div>");
+    
+    // make jQuery object
+    $grid.prepend($elems).masonry('prepended', $elems);
+};
 
 // Run once when the document is ready
 $(document).ready(function () {
     renderButtons();
+});
+
+var $grid = $('.grid').masonry({
+    columnWidth: 420,
+    itemSelector: '.grid-item',
+    gutter: 20
 });
