@@ -1,6 +1,6 @@
 const apiKey = "t9Js0eys1AyskcYxqnMTzaI3ksBDn9hy";
 const imageCount = 10;
-const buttons = ["Leslie Knope"];
+const buttons = ["Leslie Knope", "Bob Ross", "Cats"];
 
 // When the user clicks submit on the add buttons form...
 $("#submit").on("click", function (e) {
@@ -44,7 +44,7 @@ function renderButtons() {
     //Render a button for each item in the array
     buttons.forEach(function (item, i) {
         const btn = $("<button>");
-        btn.addClass("summonGifBtn");
+        btn.addClass("summonGifBtn btn btn-light shadow-sm m-1");
         btn.attr("data-name", item);
         btn.text(item)
 
@@ -63,13 +63,14 @@ function generateGifs(array) {
         const animatedURL = item.images.fixed_height.url;
 
         const gifContainer = $("<div>");
-        gifContainer.addClass("panel col-12 col-md-6 col-lg-4 p-2");
+        gifContainer.addClass("col-12 col-md-6 col-lg-4 p-2");
 
         const gifCard = $("<div>");
         gifCard.addClass("m-2 rounded bg-light shadow")
 
         const title = $("<h3>");
         title.text(gifTitle);
+        title.addClass("px-4 pt-4 pb-1")
 
         const rating = $("<p>");
         rating.text(`Rated ${gifRating}`);
