@@ -1,6 +1,6 @@
 const apiKey = "t9Js0eys1AyskcYxqnMTzaI3ksBDn9hy";
 const imageCount = 10;
-const buttons = ["Leslie Knope", "Bob Ross", "Cats"];
+const buttons = ["Ron Swanson", "Bob Ross", "Cats"];
 
 // When the user clicks submit on the add buttons form...
 $("#submit").on("click", function (e) {
@@ -56,44 +56,14 @@ function renderButtons() {
 function generateGifs(array) {
     console.log("Generating gifs...");
     array.forEach(function (item) {
-        console.log(item);
-        // const gifTitle = item.title;
-        // const gifRating = item.rating;
-        // const stillUrl = item.images.fixed_height_still.url;
-        // const animatedURL = item.images.fixed_height.url;
-
-        // const gifContainer = $("<div>");
-        // gifContainer.addClass("col-12 col-md-6 col-lg-4 p-2");
-
-        // const gifCard = $("<div>");
-        // gifCard.addClass("m-2 rounded bg-light shadow")
-
-        // const title = $("<h3>");
-        // title.text(gifTitle);
-        // title.addClass("px-4 pt-4 pb-1")
-
-        // const rating = $("<p>");
-        // rating.text(`Rated ${gifRating}`);
-
-        // const img = $("<img>");
-        // img.addClass("gifListener img-fluid w-100 rounded-bottom");
-        // img.attr("src", stillUrl);
-        // img.attr("data-still-url", stillUrl);
-        // img.attr("data-animated-url", animatedURL);
-        // img.attr("data-state", "still");
-
-        // gifContainer.append(title, rating, img);
-        // let gifElem = $ (gifContainer);
-        // // $("#gifs").prepend(gifContainer);
-
         const gifTitle = item.title;
         const gifRating = item.rating.toUpperCase();
         const gifAnimationUrl = item.images.fixed_height.url;
         const gifStillUrl = item.images.fixed_height_still.url;
 
-        const divTest = $(`<div class=\"grid-item\">
+        const divTest = $(`<div class=\"grid-item shadow\">
             <h3>${gifTitle}</h3>
-            <p class=\"px-3 text-muted\"><strong>Rated ${gifRating}</strong></p>
+            <p>Rated ${gifRating}</p>
             <img src=\"${gifStillUrl}\" class=\"gifListener w-100 rounded-bottom\" alt="${gifTitle}" data-still-url="${gifStillUrl}" data-animated-url="${gifAnimationUrl}" data-state="still"> 
         </div>`);
 
