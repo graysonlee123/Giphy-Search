@@ -87,13 +87,14 @@ function generateGifs(array) {
         // // $("#gifs").prepend(gifContainer);
 
         const gifTitle = item.title;
-        const gifRating = item.rating;
+        const gifRating = item.rating.toUpperCase();
         const gifAnimationUrl = item.images.fixed_height.url;
+        const gifStillUrl = item.images.fixed_height_still.url;
 
         const divTest = $(`<div class=\"grid-item\">
             <h3>${gifTitle}</h3>
-            <p>${gifRating}</p>
-            <img src=\"${gifAnimationUrl}\" class=\"w-100\"> 
+            <p class=\"px-3 text-muted\"><strong>Rated ${gifRating}</strong></p>
+            <img src=\"${gifStillUrl}\" class=\"gifListener w-100 rounded-bottom\" alt="${gifTitle}" data-still-url="${gifStillUrl}" data-animated-url="${gifAnimationUrl}" data-state="still"> 
         </div>`);
 
         $grid.prepend(divTest).masonry('prepended', divTest);
@@ -103,13 +104,6 @@ function generateGifs(array) {
         });
     })
 }
-
-function test($elem) {
-    // let $elems = $("<div class=\"grid-item\"> test </div>");
-    
-    // make jQuery object
-    $grid.prepend($elems).masonry('prepended', $elems);
-};
 
 // Run once when the document is ready
 $(document).ready(function () {
