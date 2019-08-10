@@ -10,6 +10,8 @@ Visit the live deployment [here](https://graysonlee123.github.io/Giphy-Search/)
 
 * [Masonry](https://masonry.desandro.com/) - The display method for the gifs
 * [Giphy API](https://developers.giphy.com/) - Gif lookup 
+* [Bootstrap](https://getbootstrap.com/)
+* [jQuery](https://api.jquery.com)
 
 ## Authors
 
